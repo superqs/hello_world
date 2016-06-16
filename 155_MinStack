@@ -1,0 +1,27 @@
+class MinStack {
+    private Stack<Integer> st = new Stack<Integer>();
+	private int min = Integer.MAX_VALUE;
+// 	private boolean minChanged = false;
+	public void push(int x) {
+		st.push(x);
+		if (x<min) min = x;
+	}
+	
+	public void pop() {
+		int remove = st.pop();
+		if (remove == min) {
+		    min = Integer.MAX_VALUE;
+		    for (int s:st) 
+			    if (s<min) min=s;
+		}
+	}
+	
+	public int top() {
+		return st.peek();
+	}
+	
+	public int getMin() {
+		return min;
+	}
+    
+}
