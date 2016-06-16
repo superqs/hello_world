@@ -1,0 +1,29 @@
+public class Solution {
+    public int maxArea(int[] height) {
+    int len = height.length;
+		int area = 0;
+		int left = 0;
+		int right = len-1;
+		int leftMax = height[0];
+		int rightMax = height[right];
+		while (left< right) {
+		  //two pointer: left and right, move towards middle
+			area = Math.max(area, (right - left)*Math.min(height[left], height[right]));
+			leftMax = height[left];
+			rightMax = height[right];
+			if (leftMax < rightMax) {
+			    while (leftMax>=height[left] && left < right) {
+			        left++;
+			    }
+			    
+			}else {
+			    while(rightMax>=height[right] && left < right) {
+			        right--;
+			    }
+			}
+			
+		}
+		return area;
+        
+    }
+}
