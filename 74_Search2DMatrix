@@ -1,0 +1,45 @@
+public class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        
+        int row = matrix.length;
+        int col = matrix[0].length;
+        int rRow = 0;
+        boolean ifInM = false;
+        for (rRow = 0; rRow< row; rRow++) {
+            if (target == matrix[rRow][col-1]) return true;
+            if (target < matrix[rRow][col-1]) {
+                ifInM = true;
+                // if (rRow != 0) rRow = rRow-1;
+                break;
+                }
+            }
+        if (!ifInM) return false;
+        ifInM = false;
+        // System.out.println(rRow);
+        for (; rRow>=0;rRow--) {
+            if(target == matrix[rRow][0]) return true;
+            if(target > matrix[rRow][0]) {
+                ifInM = true;
+                break;
+            }
+        }
+        if (!ifInM) return false;
+        // System.out.println(rRow);
+        
+        //binary search in rRow-1;
+        int start = 0; 
+        int end = col-1;
+        int mid = 0;
+        while (start<= end) {
+            mid = start + (end-start)/2;
+            // System.out.println(rRow);
+            if (matrix[rRow][mid] < target) start = mid+1;
+            // System.out.println(start);
+            // System.out.println(end);
+            else if(matrix[rRow][mid] > target) end = mid-1;
+            else return true;
+            
+        }
+        return false;
+    }
+}
