@@ -1,0 +1,26 @@
+public class Solution {
+    public void setZeroes(int[][] matrix) {
+        
+       int row = matrix.length;
+		int col = matrix[0].length;
+		HashSet<Integer> rRow = new HashSet<Integer>();
+		HashSet<Integer> rCol = new HashSet<Integer>();
+		for (int i = 0; i <row;i++)
+			for(int j = 0; j < col; j++) {
+				if (matrix[i][j] == 0) {
+					if (!rRow.contains(i)) rRow.add(i);
+					if (!rCol.contains(j)) rCol.add(j);
+
+				} 
+			}
+		for (int s :rRow) 
+			for (int k = 0; k<col; k++) {
+				matrix[s][k] = 0;
+			}
+		for (int s:rCol) 
+			for (int k = 0; k<row;k++) {
+				matrix[k][s] =0;
+			}
+        
+    }
+}
