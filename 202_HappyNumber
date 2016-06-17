@@ -1,0 +1,27 @@
+public class Solution {
+   public static boolean isHappy(int n) {
+        HashSet<Integer> record = new HashSet<Integer>();
+        record.add(n);
+        while (n > 1) {
+            int newN = power(n);
+            if (record.contains(newN)) return false;
+            else {
+            	record.add(newN);
+            	n = newN;
+            }
+        }
+        return (n==1) ? true:false;
+        
+    }
+    
+    public static int power (int n) {
+        if (n < 10) return n*n;
+        int result = 0;
+        while (n > 0) {
+            int num = n%10;
+            result = result + num*num;
+            n = n/10;
+        }
+        return result;
+    }
+}
