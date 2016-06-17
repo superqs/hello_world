@@ -1,0 +1,47 @@
+public class Solution {
+    public String longestPalindrome(String s) {
+        if (s.length() <=1) return s;
+		int N = s.length();
+		int maxcount = 1;
+		String maxsubs = "";
+		int head;
+		int tail;
+		int head_rec;
+		int tail_rec;
+		
+		for (int i = 0; i < N; i++) {
+			//odd number of the string 
+			if (maxcount == N) break;
+			head = i-1;
+			tail = i+1;
+			while (head>=0 && tail <N && (s.charAt(head) == s.charAt(tail))) {
+				head--;
+				tail++;
+			}
+			
+			if ((tail - head - 1) > maxcount) {
+				maxcount = (tail - head - 1);
+				//head_rec = head;
+				//tail_rec = tail;
+				maxsubs = s.substring(head+1, tail);
+			}
+			// even
+			head = i;
+			tail = i+1;
+			while (head>=0 && tail <N && (s.charAt(head) == s.charAt(tail))) {
+				head--;
+				tail++;
+			}
+			if ((tail - head - 1) > maxcount) {
+				maxcount = (tail - head - 1);
+				//head_rec = head;
+				//tail_rec = tail;
+				maxsubs = s.substring(head+1, tail);
+			}
+		}
+			
+		
+		return s.substring(head_rec+1, tail_rec);
+
+    }
+}
